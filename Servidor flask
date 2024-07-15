@@ -1,0 +1,18 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/process', methods=['POST'])
+def process_data():
+    data = request.get_json()
+    name = data.get('name')
+    age = data.get('age')
+    
+    response = {
+        'message': f'Received data for {name} who is {age} years old.'
+    }
+    
+    return jsonify(response), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
